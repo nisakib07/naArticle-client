@@ -20,10 +20,10 @@ const Register = () => {
     const name = data.name;
     const photoURL = data.photoURL;
 
-    const user = {
-      name: name,
-      email: email,
-    };
+    // const user = {
+    //   name: name,
+    //   email: email,
+    // };
 
     createUser(email, password)
       .then(() => {
