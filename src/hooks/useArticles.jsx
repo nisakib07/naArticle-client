@@ -6,7 +6,7 @@ const useArticles = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["data"],
+    queryKey: ["articles"],
     queryFn: () =>
       fetch("http://localhost:5000/articles").then((res) => res.json()),
   });

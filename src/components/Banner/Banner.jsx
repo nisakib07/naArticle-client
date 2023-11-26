@@ -1,16 +1,13 @@
 import useArticles from "../../hooks/useArticles";
-// Import Swiper React components
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
-// import "./styles.css";
-
-// import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import SectionTitle from "../Shared/SectionTitle/SectionTitle";
 
 const Banner = () => {
   const { articles } = useArticles();
@@ -18,6 +15,9 @@ const Banner = () => {
 
   return (
     <div>
+      <SectionTitle
+        heading="Trending Now"
+        subHeading="All over the world"></SectionTitle>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -45,6 +45,7 @@ const Banner = () => {
                 <div className="card-body">
                   <h2 className="card-title">{article.title}</h2>
                   <p>{article.views}</p>
+                  <p>{article.details.slice(0, 300)}</p>
                   <div className="card-actions justify-end">
                     <button className="btn btn-primary">Buy Now</button>
                   </div>

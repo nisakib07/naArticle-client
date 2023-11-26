@@ -1,4 +1,5 @@
 import Banner from "../../components/Banner/Banner";
+import Publishers from "../../components/Publishers/Publishers";
 import useArticles from "../../hooks/useArticles";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
   return (
     <div>
       <Banner></Banner>
+      <Publishers></Publishers>
     </div>
   );
 };
