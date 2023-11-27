@@ -4,6 +4,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const Register = () => {
   const { createUser, userProfileUpdate } = useContext(AuthContext);
@@ -20,17 +21,23 @@ const Register = () => {
     const name = data.name;
     const photoURL = data.photoURL;
 
-    // const user = {
-    //   name: name,
-    //   email: email,
-    // };
-
     createUser(email, password)
       .then(() => {
-        userProfileUpdate(name, photoURL);
-        toast.success("User Created Successfully");
-        reset();
-        navigate("/");
+        userProfileUpdate(name, photoURL).then(() => {
+          const userInfo = {
+            name: name,
+            email: email,
+            image: photoURL,
+            role: "user",
+          };
+          axios.post("http://localhost:5000/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              toast.success("User Created Successfully");
+              reset();
+              navigate("/");
+            }
+          });
+        });
       })
       .catch((error) => {
         toast.error(error.message);

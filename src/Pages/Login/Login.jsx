@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
 
 const Login = () => {
   const { userSignIn, googleSignIn } = useContext(AuthContext);
@@ -26,7 +27,14 @@ const Login = () => {
   };
   const handleGoogleLogin = () => {
     googleSignIn()
-      .then(() => {
+      .then((res) => {
+        const userInfo = {
+          name: res.user.displayName,
+          email: res.user.email,
+          image: res.user.photoURL,
+          role: "user",
+        };
+        axios.post("http://localhost:5000/users", userInfo);
         navigate("/");
         toast.success("Logged In Successfully");
       })
