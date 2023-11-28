@@ -92,7 +92,8 @@ const AddArticle = () => {
                 placeholder="Type Here"
                 className="input input-bordered"
                 name="title"
-                {...register("title", { required: true })}
+                required
+                {...register("title")}
               />
             </div>
             {/* author */}
@@ -141,7 +142,8 @@ const AddArticle = () => {
                 placeholder="Type Here"
                 className="input input-bordered"
                 name="publishedDate"
-                {...register("publishedDate", { required: true })}
+                required
+                {...register("publishedDate")}
               />
             </div>
           </div>
@@ -157,6 +159,7 @@ const AddArticle = () => {
               </label>
               <select
                 defaultValue="default"
+                required
                 className="select select-bordered w-full"
                 {...register("publisher")}>
                 <option disabled value="default">

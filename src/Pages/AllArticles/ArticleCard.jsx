@@ -36,6 +36,27 @@ const ArticleCard = ({ article, refetch }) => {
       }
     });
   };
+
+  const handleDeleteArticle = () => {
+    Swal.fire({
+      title: "Want to delete this article?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:5000/articles/${_id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            toast.success("Article Deleted");
+          }
+        });
+      }
+    });
+  };
   return (
     <div>
       <div className="card card-compact bg-blue-200 shadow-xl">
@@ -81,7 +102,9 @@ const ArticleCard = ({ article, refetch }) => {
             ) : (
               <></>
             )}
-            <button className="btn bg-red-400 hover:bg-red-500 border-none">
+            <button
+              onClick={handleDeleteArticle}
+              className="btn bg-red-400 hover:bg-red-500 border-none">
               Delete
             </button>
             <button className="btn bg-gradient-to-r from-cyan-500 to-blue-500 border-none">
