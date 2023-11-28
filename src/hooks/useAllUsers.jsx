@@ -2,16 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 
 const useAllUsers = () => {
   const {
-    data: publishers = [],
+    data: users = [],
     refetch,
     isLoading,
   } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch("http://localhost:5000/publishers").then((res) => res.json()),
+      fetch("http://localhost:5000/users").then((res) => res.json()),
   });
 
-  return { publishers, refetch, isLoading };
+  return { users, refetch, isLoading };
 };
 
 export default useAllUsers;

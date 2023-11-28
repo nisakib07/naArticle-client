@@ -9,7 +9,9 @@ const Dashboard = () => {
         <NavLink to="/dashboard/allArticles">All Articles</NavLink>
         <NavLink to="/dashboard/addPublisher">Add Publisher</NavLink>
       </div>
-      <Outlet></Outlet>
+      <div className="flex-grow">
+        <Outlet></Outlet>
+      </div>
     </div>
   );
 };
