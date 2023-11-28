@@ -57,6 +57,29 @@ const ArticleCard = ({ article, refetch }) => {
       }
     });
   };
+
+  const handleMakePremium = () => {
+    Swal.fire({
+      title: "Make this article Premium?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .patch(`http://localhost:5000/articles/premium/${_id}`)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              toast.success("Article has been made premium");
+            }
+          });
+      }
+    });
+  };
   return (
     <div>
       <div className="card card-compact bg-blue-200 shadow-xl">
@@ -65,7 +88,7 @@ const ArticleCard = ({ article, refetch }) => {
         </figure>
         <div className="card-body">
           <h2 className="text-xl font-semibold h-[60px]">{title}</h2>
-          <div className="flex items-center gap-20">
+          <div className="flex items-center gap-20 h-[80px]">
             <div className="flex items-center gap-4">
               <img className="rounded-full w-12" src={authorPhoto} alt="" />
               <div>
@@ -107,7 +130,9 @@ const ArticleCard = ({ article, refetch }) => {
               className="btn bg-red-400 hover:bg-red-500 border-none">
               Delete
             </button>
-            <button className="btn bg-gradient-to-r from-cyan-500 to-blue-500 border-none">
+            <button
+              onClick={handleMakePremium}
+              className="btn bg-gradient-to-r from-cyan-500 to-blue-500 border-none">
               Premium
             </button>
           </div>
