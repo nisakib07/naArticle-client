@@ -5,6 +5,9 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import AddArticle from "../Pages/AddArticle/AddArticle";
+import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 
 const Router = createBrowserRouter([
   {
@@ -30,6 +33,20 @@ const Router = createBrowserRouter([
       {
         path: "addArticle",
         element: <AddArticle></AddArticle>,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "adminHome",
+        element: <AdminHome></AdminHome>,
+      },
+      {
+        path: "allUsers",
+        element: <AllUsers></AllUsers>,
       },
     ],
   },

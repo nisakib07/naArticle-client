@@ -18,6 +18,9 @@ const Navbar = () => {
       <li>
         <NavLink to="/subscription">Subscription</NavLink>
       </li>
+      <li>
+        <NavLink to="/dashboard/adminHome">Dashboard</NavLink>
+      </li>
     </>
   );
 
