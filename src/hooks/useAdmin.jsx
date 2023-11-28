@@ -7,7 +7,7 @@ const useAdmin = () => {
   const {
     data: isAdmin,
     refetch,
-    isLoading,
+    isLoading: isAdminLoading,
   } = useQuery({
     queryKey: ["isAdmin"],
     queryFn: () =>
@@ -16,7 +16,7 @@ const useAdmin = () => {
       ),
   });
 
-  return { isAdmin, refetch, isLoading };
+  return { isAdmin, refetch, isAdminLoading };
 };
 
 export default useAdmin;
