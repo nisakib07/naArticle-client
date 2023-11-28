@@ -1,8 +1,34 @@
 import SectionTitle from "../../../components/Shared/SectionTitle/SectionTitle";
+import { FaUserFriends } from "react-icons/fa";
+
 import useAllUsers from "../../../hooks/useAllUsers";
+import Swal from "sweetalert2";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const AllUsers = () => {
-  const { users } = useAllUsers();
+  const { users, refetch } = useAllUsers();
+
+  const handleMakeAdmin = (id) => {
+    Swal.fire({
+      title: "Want to make Admin?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.patch(`http://localhost:5000/users/admin/${id}`).then((res) => {
+          if (res.data.modifiedCount > 0) {
+            refetch();
+            toast.success("Admin Role Given");
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -12,7 +38,7 @@ const AllUsers = () => {
 
       <div>
         <div className="overflow-x-auto px-5">
-          <table className="table">
+          <table className="table text-center">
             {/* head */}
             <thead>
               <tr>
@@ -22,7 +48,7 @@ const AllUsers = () => {
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center">
               {/* row 1 */}
               {users &&
                 users.map((user) => (
@@ -42,9 +68,15 @@ const AllUsers = () => {
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <th>
-                      <button className="btn btn-ghost btn-xs">
-                        Make Admin
-                      </button>
+                      {user.role === "admin" ? (
+                        <p>Admin</p>
+                      ) : (
+                        <button
+                          onClick={() => handleMakeAdmin(user._id)}
+                          className="btn btn-ghost text-xl">
+                          <FaUserFriends></FaUserFriends>
+                        </button>
+                      )}
                     </th>
                   </tr>
                 ))}

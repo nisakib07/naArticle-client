@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const Dashboard = () => {
   return (
@@ -12,6 +13,7 @@ const Dashboard = () => {
       <div className="flex-grow">
         <Outlet></Outlet>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
