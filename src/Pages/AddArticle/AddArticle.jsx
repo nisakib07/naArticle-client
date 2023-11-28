@@ -21,6 +21,18 @@ const AddArticle = () => {
     { value: "bangladesh", label: "Bangladesh" },
     { value: "international", label: "International" },
     { value: "football", label: "Football" },
+    { value: "meditation", label: "Meditation" },
+    { value: "health", label: "Health" },
+    { value: "religion", label: "Religion" },
+    { value: "islam", label: "Islam" },
+    { value: "education", label: "Education" },
+    { value: "web", label: "Web" },
+    { value: "war", label: "War" },
+    { value: "basketball", label: "Basketball" },
+    { value: "election", label: "Election" },
+    { value: "disease", label: "Disease" },
+    { value: "diabetes", label: "Diabetes" },
+    { value: "harassment", label: "Harassment" },
   ];
 
   const onSubmit = async (data) => {

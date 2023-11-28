@@ -11,7 +11,12 @@ import SectionTitle from "../Shared/SectionTitle/SectionTitle";
 
 const Banner = () => {
   const { articles } = useArticles();
-  const sortedArticles = articles.slice().sort((a, b) => b.views - a.views);
+  const approvedArticles = articles.filter(
+    (article) => article?.isApproved === "Approved"
+  );
+  const sortedArticles = approvedArticles
+    .slice()
+    .sort((a, b) => b.views - a.views);
 
   return (
     <div>
@@ -31,7 +36,7 @@ const Banner = () => {
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper">
-        {articles &&
+        {sortedArticles &&
           sortedArticles.slice(0, 6).map((article) => (
             <SwiperSlide key={article._id}>
               <div className="card card-compact bg-base-100 shadow-xl">

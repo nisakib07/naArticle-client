@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
+  const { isAdmin } = useAdmin();
+  console.log(isAdmin);
   const navLinks = (
     <>
       <li>
@@ -18,9 +21,11 @@ const Navbar = () => {
       <li>
         <NavLink to="/subscription">Subscription</NavLink>
       </li>
-      <li>
-        <NavLink to="/dashboard/adminHome">Dashboard</NavLink>
-      </li>
+      {isAdmin?.isAdmin && (
+        <li>
+          <NavLink to="/dashboard/adminHome">Dashboard</NavLink>
+        </li>
+      )}
     </>
   );
 

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
@@ -11,13 +11,16 @@ const Login = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
 
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const onSubmit = (data) => {
     const email = data.email;
     const password = data.password;
 
     userSignIn(email, password)
       .then(() => {
-        navigate("/");
+        navigate(from, { replace: true });
         toast.success("Logged In Successfully");
         reset();
       })
@@ -35,7 +38,7 @@ const Login = () => {
           role: "user",
         };
         axios.post("http://localhost:5000/users", userInfo);
-        navigate("/");
+        navigate(from, { replace: true });
         toast.success("Logged In Successfully");
       })
       .catch((error) => {

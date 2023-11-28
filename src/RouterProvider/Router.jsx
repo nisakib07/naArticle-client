@@ -8,6 +8,8 @@ import AddArticle from "../Pages/AddArticle/AddArticle";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AdminRoute from "./AdminRoute";
+import AllArticles from "../Pages/AllArticles/AllArticles";
 
 const Router = createBrowserRouter([
   {
@@ -37,16 +39,32 @@ const Router = createBrowserRouter([
     ],
   },
   {
-    path: "dashboard",
+    path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children: [
       {
         path: "adminHome",
-        element: <AdminHome></AdminHome>,
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
       },
       {
         path: "allUsers",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "allArticles",
+        element: (
+          <AdminRoute>
+            <AllArticles></AllArticles>
+          </AdminRoute>
+        ),
       },
     ],
   },
