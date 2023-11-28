@@ -192,8 +192,9 @@ const AddArticle = () => {
               <span className="label-text text-xl font-semibold">Details</span>
             </label>
             <textarea
+              required
               className="textarea textarea-bordered h-24"
-              {...register("details", { required: true })}
+              {...register("details")}
               placeholder="Details"></textarea>
           </div>
           <div>

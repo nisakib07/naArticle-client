@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
@@ -7,8 +8,12 @@ const ArticleCard = ({ article, refetch }) => {
   const {
     _id,
     title,
+    tags,
+    views,
     author,
     image,
+    isPremium,
+    details,
     authorEmail,
     authorPhoto,
     publishedDate,
@@ -35,6 +40,39 @@ const ArticleCard = ({ article, refetch }) => {
         });
       }
     });
+  };
+
+  const handleDecline = (e) => {
+    e.preventDefault();
+    const declineReason = e.target.declineReason.value;
+    const updatedArticle = {
+      title: title,
+      tags: tags,
+      views: views,
+      publisher: publisher,
+      image: image,
+      isPremium: isPremium,
+      author: author,
+      authorEmail: authorEmail,
+      authorPhoto: authorPhoto,
+      publishedDate: publishedDate,
+      details: details,
+      status: "Declined",
+      declineReason: declineReason,
+    };
+
+    axios
+      .put(`http://localhost:5000/articles/${_id}`, updatedArticle)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          console.log(res.data);
+          toast.success("Article Declined with reason");
+        } else {
+          toast.warn("Already Declined");
+        }
+        e.target.reset();
+        refetch();
+      });
   };
 
   const handleDeleteArticle = () => {
@@ -119,7 +157,11 @@ const ArticleCard = ({ article, refetch }) => {
               <></>
             )}
             {status !== "Approved" ? (
-              <button className="btn bg-fuchsia-400 hover:bg-fuchsia-500 border-none">
+              <button
+                onClick={() =>
+                  document.getElementById(`my_modal_${_id}`).showModal()
+                }
+                className="btn bg-fuchsia-400 hover:bg-fuchsia-500 border-none">
                 Decline
               </button>
             ) : (
@@ -136,6 +178,36 @@ const ArticleCard = ({ article, refetch }) => {
               Premium
             </button>
           </div>
+          <dialog
+            id={`my_modal_${_id}`}
+            className="modal modal-bottom sm:modal-middle">
+            <div className="modal-box">
+              <h3 className="font-bold text-lg text-center mb-4">
+                Reason of declining
+              </h3>
+              <form onSubmit={handleDecline}>
+                <textarea
+                  required
+                  className="textarea textarea-bordered h-24 w-full"
+                  name="declineReason"
+                  placeholder="Type here..."></textarea>
+                <br />
+                <div className="flex justify-center">
+                  <button
+                    type="submit"
+                    className="btn mt-4 bg-green-400 hover:bg-green-500">
+                    Submit
+                  </button>
+                </div>
+              </form>
+              <div className="modal-action">
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button className="btn">Close</button>
+                </form>
+              </div>
+            </div>
+          </dialog>
         </div>
       </div>
     </div>
