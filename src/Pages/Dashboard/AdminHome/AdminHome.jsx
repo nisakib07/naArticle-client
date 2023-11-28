@@ -14,13 +14,35 @@ const AdminHome = () => {
       .length,
   }));
 
-  const chartData = [
+  const pieChartData = [
     ["Publisher", "Number of Articles"],
     ...publisherData.map((data) => [data.name, data.count]),
   ];
 
-  const options = {
+  const articleStatusData = [
+    ["Status", "Number of Articles"],
+    [
+      "Pending",
+      articles.filter((article) => article.status === "Pending").length,
+    ],
+    [
+      "Approved",
+      articles.filter((article) => article.status === "Approved").length,
+    ],
+    [
+      "Declined",
+      articles.filter((article) => article.status === "Declined").length,
+    ],
+  ];
+
+  const optionsPie = {
     title: "Article Percentage of different publishers",
+  };
+
+  const options = {
+    title: "Article Status Statistics",
+    bars: "vertical",
+    legend: { position: "none" },
   };
 
   return (
@@ -37,13 +59,23 @@ const AdminHome = () => {
           wrapperClass="blocks-wrapper"
         />
       ) : (
-        <Chart
-          chartType="PieChart"
-          data={chartData}
-          options={options}
-          width={"100%"}
-          height={"400px"}
-        />
+        <>
+          <Chart
+            chartType="PieChart"
+            data={pieChartData}
+            options={optionsPie}
+            width={"100%"}
+            height={"400px"}
+          />
+
+          <Chart
+            chartType="BarChart"
+            data={articleStatusData}
+            options={options}
+            width={"100%"}
+            height={"400px"}
+          />
+        </>
       )}
     </div>
   );
