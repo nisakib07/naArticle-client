@@ -5,7 +5,7 @@ import "./Dashboard.css";
 const Dashboard = () => {
   return (
     <div className="flex max-w-screen-xl mx-auto">
-      <div className="w-60 bg-blue-300 min-h-screen flex flex-col px-5 pt-16">
+      <div className="w-[290px] bg-blue-300 min-h-screen flex flex-col px-5 pt-16">
         <ul className="menu nav text-lg space-y-2" id="nav">
           <NavLink to="/dashboard/adminHome">Admin Home</NavLink>
           <NavLink to="/dashboard/allUsers">All Users</NavLink>

@@ -7,10 +7,12 @@ const AllArticles = () => {
   return (
     <div>
       <SectionTitle heading="All Articles"></SectionTitle>
-      {articles &&
-        articles.map((article) => (
-          <ArticleCard key={article._id} article={article}></ArticleCard>
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-5">
+        {articles &&
+          articles.map((article) => (
+            <ArticleCard key={article._id} article={article}></ArticleCard>
+          ))}
+      </div>
     </div>
   );
 };

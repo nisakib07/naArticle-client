@@ -33,6 +33,8 @@ const AddArticle = () => {
     { value: "disease", label: "Disease" },
     { value: "diabetes", label: "Diabetes" },
     { value: "harassment", label: "Harassment" },
+    { value: "economy", label: "Economy" },
+    { value: "award", label: "Award" },
   ];
 
   const onSubmit = async (data) => {
@@ -56,9 +58,10 @@ const AddArticle = () => {
         publisher: data.publisher,
         image: res.data.data.display_url,
         isPremium: false,
-        isApproved: "Pending",
+        status: "Pending",
         author: user?.displayName,
         authorEmail: user?.email,
+        authorPhoto: user?.photoURL,
         publishedDate: data.publishedDate,
         details: data.details,
       };

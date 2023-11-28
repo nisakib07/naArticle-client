@@ -12,7 +12,7 @@ import SectionTitle from "../Shared/SectionTitle/SectionTitle";
 const Banner = () => {
   const { articles } = useArticles();
   const approvedArticles = articles.filter(
-    (article) => article?.isApproved === "Approved"
+    (article) => article?.status === "Approved"
   );
   const sortedArticles = approvedArticles
     .slice()
