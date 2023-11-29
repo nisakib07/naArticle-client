@@ -17,6 +17,7 @@ import Subscription from "../Pages/Subscription/Subscription";
 import Payment from "../Pages/Payment/Payment";
 import PremiumArticles from "../Pages/PremiumArticles/PremiumArticles";
 import MyArticles from "../Pages/MyArticles/MyArticles";
+import UpdateArticle from "../Pages/UpdateArticle/UpdateArticle";
 
 const Router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const Router = createBrowserRouter([
       {
         path: "myArticles",
         element: <MyArticles></MyArticles>,
+      },
+      {
+        path: "updateArticle/:id",
+        element: <UpdateArticle></UpdateArticle>,
       },
     ],
   },

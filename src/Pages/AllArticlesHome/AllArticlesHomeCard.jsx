@@ -3,11 +3,17 @@ import PropTypes from "prop-types";
 import { FaArrowRight, FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const AllArticlesHomeCard = ({ article }) => {
+const AllArticlesHomeCard = ({ article, refetch }) => {
   const { title, image, publisher, details, isPremium, _id, views } = article;
 
   const handleView = async () => {
-    await axios.patch(`http://localhost:5000/articles/increase-view/${_id}`);
+    await axios
+      .patch(`http://localhost:5000/articles/increase-view/${_id}`)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          refetch();
+        }
+      });
   };
 
   return (
@@ -51,6 +57,7 @@ const AllArticlesHomeCard = ({ article }) => {
 
 AllArticlesHomeCard.propTypes = {
   article: PropTypes.object,
+  refetch: PropTypes.func,
 };
 
 export default AllArticlesHomeCard;

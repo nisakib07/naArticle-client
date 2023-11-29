@@ -7,6 +7,8 @@ import { FaEye } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { updateProfile } from "firebase/auth";
 
 const MyArticles = () => {
   const { articles, refetch } = useArticles();
@@ -96,9 +98,11 @@ const MyArticles = () => {
                       )}
                     </td>
                     <td>
-                      <button className="btn bg-fuchsia-400 hover:bg-fuchsia-500">
-                        Update
-                      </button>
+                      <Link to={`/updateArticle/${article._id}`}>
+                        <button className="btn bg-fuchsia-400 hover:bg-fuchsia-500">
+                          Update
+                        </button>
+                      </Link>
                     </td>
                     <td>
                       <button

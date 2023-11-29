@@ -9,8 +9,8 @@ import { Blocks } from "react-loader-spinner";
 import Select from "react-select";
 
 const AllArticlesHome = () => {
-  const { articles, isLoading } = useArticles();
-  console.log(articles);
+  const { articles, isLoading, refetch } = useArticles();
+
   const [selectedTags, setSelectedTags] = useState([]);
 
   const { publishers } = usePublishers();
@@ -187,7 +187,8 @@ const AllArticlesHome = () => {
             searchedArticles?.map((article) => (
               <AllArticlesHomeCard
                 key={article._id}
-                article={article}></AllArticlesHomeCard>
+                article={article}
+                refetch={refetch}></AllArticlesHomeCard>
             ))}
         </div>
       )}
