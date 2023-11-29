@@ -1,10 +1,10 @@
 import axios from "axios";
 import PropTypes from "prop-types";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const AllArticlesHomeCard = ({ article }) => {
-  const { title, image, publisher, details, isPremium, _id } = article;
+  const { title, image, publisher, details, isPremium, _id, views } = article;
 
   const handleView = async () => {
     await axios.patch(`http://localhost:5000/articles/increase-view/${_id}`);
@@ -16,8 +16,13 @@ const AllArticlesHomeCard = ({ article }) => {
         <figure>
           <img className="w-full h-[300px]" src={image} alt="Shoes" />
         </figure>
-        <div className="card-body">
-          <h2 className="text-xl font-semibold h-[60px]">{title}</h2>
+        <div className="p-5">
+          <div className="flex items-center justify-between h-[60px]">
+            <h2 className="text-xl font-semibold">{title}</h2>
+            <p className="flex items-center gap-2">
+              <FaEye></FaEye> {views}
+            </p>
+          </div>
           <p className="text-lg">
             <span className="font-bold">Publisher : </span>
             {publisher}

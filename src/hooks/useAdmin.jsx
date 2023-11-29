@@ -4,7 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const useAdmin = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+
   const {
     data: isAdmin,
     refetch,

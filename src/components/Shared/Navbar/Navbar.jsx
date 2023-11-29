@@ -6,7 +6,6 @@ import useAdmin from "../../../hooks/useAdmin";
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
   const { isAdmin } = useAdmin();
-  console.log(isAdmin);
   const navLinks = (
     <>
       <li>
