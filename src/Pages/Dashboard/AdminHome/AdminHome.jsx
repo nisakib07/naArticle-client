@@ -35,6 +35,12 @@ const AdminHome = () => {
     ],
   ];
 
+  const premiumData = [
+    ["Status", "Number of Articles"],
+    ["Premium", articles.filter((article) => article.isPremium).length],
+    ["Non-Premium", articles.filter((article) => !article.isPremium).length],
+  ];
+
   const optionsPie = {
     title: "Article Percentage of different publishers",
   };
@@ -42,6 +48,12 @@ const AdminHome = () => {
   const options = {
     title: "Article Status Statistics",
     bars: "vertical",
+    legend: { position: "none" },
+  };
+
+  const optionsLine = {
+    title: "Premium vs Non-Premium Articles",
+    curveType: "function",
     legend: { position: "none" },
   };
 
@@ -72,6 +84,13 @@ const AdminHome = () => {
             chartType="BarChart"
             data={articleStatusData}
             options={options}
+            width={"100%"}
+            height={"400px"}
+          />
+          <Chart
+            chartType="LineChart"
+            data={premiumData}
+            options={optionsLine}
             width={"100%"}
             height={"400px"}
           />

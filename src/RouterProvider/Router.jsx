@@ -11,6 +11,7 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
 import AllArticles from "../Pages/AllArticles/AllArticles";
 import AddPublisher from "../Pages/Dashboard/AddPublisher/AddPublisher";
+import AllArticlesHome from "../Pages/AllArticlesHome/AllArticlesHome";
 
 const Router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const Router = createBrowserRouter([
       {
         path: "addArticle",
         element: <AddArticle></AddArticle>,
+      },
+      {
+        path: "allArticles",
+        element: <AllArticlesHome></AllArticlesHome>,
       },
     ],
   },
