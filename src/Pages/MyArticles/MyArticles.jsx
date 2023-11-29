@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { updateProfile } from "firebase/auth";
 
 const MyArticles = () => {
   const { articles, refetch } = useArticles();
