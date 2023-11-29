@@ -65,7 +65,6 @@ const ArticleCard = ({ article, refetch }) => {
       .put(`http://localhost:5000/articles/${_id}`, updatedArticle)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
-          console.log(res.data);
           toast.success("Article Declined with reason");
         } else {
           toast.warn("Already Declined");
