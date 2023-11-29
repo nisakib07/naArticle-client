@@ -4,13 +4,37 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import SectionTitle from "../../components/Shared/SectionTitle/SectionTitle";
 
 import { FaEye } from "react-icons/fa6";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const MyArticles = () => {
-  const { articles } = useArticles();
+  const { articles, refetch } = useArticles();
   const { user } = useContext(AuthContext);
   const myArticles = articles.filter(
     (article) => article.authorEmail === user?.email
   );
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Want to delete this article?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:5000/articles/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            toast.success("Article Deleted");
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -77,7 +101,9 @@ const MyArticles = () => {
                       </button>
                     </td>
                     <td>
-                      <button className="btn bg-red-400 hover:bg-red-500">
+                      <button
+                        onClick={() => handleDelete(article._id)}
+                        className="btn bg-red-400 hover:bg-red-500">
                         Delete
                       </button>
                     </td>
