@@ -2,7 +2,7 @@ import { useContext } from "react";
 import useArticles from "../../hooks/useArticles";
 import { AuthContext } from "../../Provider/AuthProvider";
 import SectionTitle from "../../components/Shared/SectionTitle/SectionTitle";
-import { FaUserFriends } from "react-icons/fa";
+
 import { FaEye } from "react-icons/fa6";
 
 const MyArticles = () => {
@@ -46,7 +46,13 @@ const MyArticles = () => {
                       {article.status === "Declined" ? (
                         <div className="flex justify-center items-center gap-2">
                           {article.status}{" "}
-                          <button className="text-xl">
+                          <button
+                            onClick={() =>
+                              document
+                                .getElementById(`my_modal_${article._id}`)
+                                .showModal()
+                            }
+                            className="text-xl">
                             <FaEye></FaEye>
                           </button>
                         </div>
@@ -66,11 +72,31 @@ const MyArticles = () => {
                       )}
                     </td>
                     <td>
-                      <button className="btn bg-fuchsia-400">Update</button>
+                      <button className="btn bg-fuchsia-400 hover:bg-fuchsia-500">
+                        Update
+                      </button>
                     </td>
                     <td>
-                      <button className="btn bg-red-400">Delete</button>
+                      <button className="btn bg-red-400 hover:bg-red-500">
+                        Delete
+                      </button>
                     </td>
+                    <dialog
+                      id={`my_modal_${article._id}`}
+                      className="modal modal-bottom sm:modal-middle">
+                      <div className="modal-box">
+                        <h3 className="font-bold text-lg">
+                          Cause of declining
+                        </h3>
+                        <p className="py-4">{article.declineReason}</p>
+                        <div className="modal-action">
+                          <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn">Close</button>
+                          </form>
+                        </div>
+                      </div>
+                    </dialog>
                   </tr>
                 ))}
             </tbody>
