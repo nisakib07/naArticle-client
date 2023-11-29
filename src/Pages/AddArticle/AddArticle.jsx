@@ -8,7 +8,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
 
 const AddArticle = () => {
-  const { control, register, handleSubmit, reset } = useForm();
+  const { control, register, handleSubmit, reset, setValue } = useForm();
   const { user } = useContext(AuthContext);
 
   const { publishers } = usePublishers();
@@ -69,6 +69,7 @@ const AddArticle = () => {
         if (res.data.insertedId) {
           toast.success("Article Added Successfully");
           reset();
+          setValue("tags", null);
         }
       });
     }

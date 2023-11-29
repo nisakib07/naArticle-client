@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const AllArticlesHomeCard = ({ article }) => {
-  const { title, image, publisher, details, isPremium } = article;
+  const { title, image, publisher, details, isPremium, _id } = article;
 
   return (
     <div>
@@ -23,9 +24,11 @@ const AllArticlesHomeCard = ({ article }) => {
                 See Details <FaArrowRight />
               </button>
             ) : (
-              <button className="btn bg-indigo-300 hover:bg-indigo-400 mt-3">
-                See Details <FaArrowRight />
-              </button>
+              <Link to={`/details/${_id}`}>
+                <button className="btn bg-indigo-300 hover:bg-indigo-400 mt-3">
+                  See Details <FaArrowRight />
+                </button>
+              </Link>
             )}
           </div>
         </div>
