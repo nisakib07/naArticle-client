@@ -4,19 +4,48 @@ import useArticles from "../../hooks/useArticles";
 import AllArticlesHomeCard from "./AllArticlesHomeCard";
 import { useForm } from "react-hook-form";
 import usePublishers from "../../hooks/usePublishers";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Blocks } from "react-loader-spinner";
+import Select from "react-select";
 
 const AllArticlesHome = () => {
   const { articles, isLoading } = useArticles();
+  console.log(articles);
+  const [selectedTags, setSelectedTags] = useState([]);
 
   const { publishers } = usePublishers();
-  const approvedArticles = articles.filter(
-    (article) => article.status === "Approved"
-  );
 
-  console.log(approvedArticles);
-  const [searchedArticles, setSearchedArticles] = useState(approvedArticles);
+  const options = [
+    { value: "sports", label: "Sports" },
+    { value: "cricket", label: "Cricket" },
+    { value: "bangladesh", label: "Bangladesh" },
+    { value: "international", label: "International" },
+    { value: "football", label: "Football" },
+    { value: "meditation", label: "Meditation" },
+    { value: "health", label: "Health" },
+    { value: "religion", label: "Religion" },
+    { value: "islam", label: "Islam" },
+    { value: "education", label: "Education" },
+    { value: "web", label: "Web" },
+    { value: "war", label: "War" },
+    { value: "basketball", label: "Basketball" },
+    { value: "election", label: "Election" },
+    { value: "disease", label: "Disease" },
+    { value: "diabetes", label: "Diabetes" },
+    { value: "harassment", label: "Harassment" },
+    { value: "economy", label: "Economy" },
+    { value: "award", label: "Award" },
+  ];
+
+  const [searchedArticles, setSearchedArticles] = useState([]);
+  useEffect(() => {
+    if (!isLoading) {
+      const approvedArticles = articles.filter(
+        (article) => article.status === "Approved"
+      );
+      setSearchedArticles(approvedArticles);
+    }
+  }, [isLoading]);
 
   const { register, handleSubmit } = useForm();
 
@@ -38,6 +67,26 @@ const AllArticlesHome = () => {
         setSearchedArticles(res.data);
       });
   };
+
+  const handleTagChange = (selectedOptions) => {
+    setSelectedTags(selectedOptions);
+  };
+
+  const onSubmit = () => {
+    const tags = selectedTags.map((option) => option.value);
+
+    console.log(tags);
+    axios
+      .get(`http://localhost:5000/articles/searchTags/tags`, {
+        params: {
+          tags: tags,
+        },
+      })
+      .then((res) => {
+        setSearchedArticles(res.data);
+      });
+  };
+
   return (
     <div className="px-5">
       <SectionTitle heading="All Articles"></SectionTitle>
@@ -98,6 +147,23 @@ const AllArticlesHome = () => {
           </div>
         </form>
       </div>
+
+      {/* Tags */}
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text text-xl font-semibold">Tags</span>
+        </label>
+        <Select
+          isMulti
+          options={options}
+          onChange={handleTagChange}
+          value={selectedTags}
+        />
+      </div>
+
+      <button type="submit" className="btn" onClick={handleSubmit(onSubmit)}>
+        Search
+      </button>
       {isLoading ? (
         <Blocks
           visible={true}
@@ -110,7 +176,7 @@ const AllArticlesHome = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {searchedArticles &&
-            searchedArticles.map((article) => (
+            searchedArticles?.map((article) => (
               <AllArticlesHomeCard
                 key={article._id}
                 article={article}></AllArticlesHomeCard>
