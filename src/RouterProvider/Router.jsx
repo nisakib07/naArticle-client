@@ -14,6 +14,8 @@ import AddPublisher from "../Pages/Dashboard/AddPublisher/AddPublisher";
 import AllArticlesHome from "../Pages/AllArticlesHome/AllArticlesHome";
 import Details from "../Pages/Details/Details";
 import Subscription from "../Pages/Subscription/Subscription";
+import Payment from "../Pages/Payment/Payment";
+import PremiumArticles from "../Pages/PremiumArticles/PremiumArticles";
 
 const Router = createBrowserRouter([
   {
@@ -51,6 +53,14 @@ const Router = createBrowserRouter([
       {
         path: "subscription",
         element: <Subscription></Subscription>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
+      },
+      {
+        path: "premiumArticles",
+        element: <PremiumArticles></PremiumArticles>,
       },
     ],
   },

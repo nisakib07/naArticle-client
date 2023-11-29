@@ -6,6 +6,7 @@ import useAdmin from "../../../hooks/useAdmin";
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
   const { isAdmin } = useAdmin();
+  let subscriptionTaken = true;
   const navLinks = (
     <>
       <li>
@@ -23,6 +24,11 @@ const Navbar = () => {
       {isAdmin?.isAdmin && (
         <li>
           <NavLink to="/dashboard/adminHome">Dashboard</NavLink>
+        </li>
+      )}
+      {subscriptionTaken && (
+        <li>
+          <NavLink to="/premiumArticles">Premium Articles</NavLink>
         </li>
       )}
     </>

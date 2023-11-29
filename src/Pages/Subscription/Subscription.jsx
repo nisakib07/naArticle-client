@@ -1,14 +1,16 @@
+import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Subscription = () => {
   const [selectedDuration, setSelectedDuration] = useState("default");
-  const [cost, setCost] = useState(""); // Initialize with an empty string
+  const [cost, setCost] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Selected Duration:", selectedDuration);
     console.log("Cost:", cost);
-    // You can proceed with your form submission logic here
+    axios.patch("");
   };
 
   const handleSelectDuration = (e) => {
@@ -48,14 +50,24 @@ const Subscription = () => {
             type="text"
             placeholder="Type Here"
             className="input input-bordered"
-            defaultValue={cost} // Set defaultValue instead of value
+            defaultValue={cost}
             readOnly
+            required
             name="cost"
           />
         </div>
-        <button type="submit" className="btn">
-          Buy
-        </button>
+
+        {selectedDuration === "default" ? (
+          <button type="submit" className="btn" disabled>
+            Buy
+          </button>
+        ) : (
+          <Link to="/payment">
+            <button type="submit" className="btn">
+              Buy
+            </button>
+          </Link>
+        )}
       </form>
     </div>
   );
