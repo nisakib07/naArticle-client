@@ -13,6 +13,7 @@ import AllArticles from "../Pages/AllArticles/AllArticles";
 import AddPublisher from "../Pages/Dashboard/AddPublisher/AddPublisher";
 import AllArticlesHome from "../Pages/AllArticlesHome/AllArticlesHome";
 import Details from "../Pages/Details/Details";
+import Subscription from "../Pages/Subscription/Subscription";
 
 const Router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const Router = createBrowserRouter([
       {
         path: "details/:id",
         element: <Details></Details>,
+      },
+      {
+        path: "subscription",
+        element: <Subscription></Subscription>,
       },
     ],
   },

@@ -47,7 +47,7 @@ const AllArticlesHome = () => {
     }
   }, [isLoading]);
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const publisherSearch = (data) => {
     const publisher = data.publisher;
@@ -56,6 +56,7 @@ const AllArticlesHome = () => {
       .get(`http://localhost:5000/articles/searchPublisher/${publisher}`)
       .then((res) => {
         setSearchedArticles(res.data);
+        reset();
       });
   };
   const titleSearch = (data) => {
@@ -65,6 +66,7 @@ const AllArticlesHome = () => {
       .get(`http://localhost:5000/articles/searchTitle/${title}`)
       .then((res) => {
         setSearchedArticles(res.data);
+        reset();
       });
   };
 
@@ -153,17 +155,23 @@ const AllArticlesHome = () => {
         <label className="label">
           <span className="label-text text-xl font-semibold">Tags</span>
         </label>
-        <Select
-          isMulti
-          options={options}
-          onChange={handleTagChange}
-          value={selectedTags}
-        />
+        <div className="flex gap-6 items-center">
+          <Select
+            isMulti
+            className="w-full"
+            options={options}
+            onChange={handleTagChange}
+            value={selectedTags}
+          />
+          <button
+            type="submit"
+            className="btn"
+            onClick={handleSubmit(onSubmit)}>
+            Search
+          </button>
+        </div>
       </div>
 
-      <button type="submit" className="btn" onClick={handleSubmit(onSubmit)}>
-        Search
-      </button>
       {isLoading ? (
         <Blocks
           visible={true}
@@ -174,7 +182,7 @@ const AllArticlesHome = () => {
           wrapperClass="blocks-wrapper"
         />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
           {searchedArticles &&
             searchedArticles?.map((article) => (
               <AllArticlesHomeCard
