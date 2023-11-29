@@ -16,6 +16,7 @@ import Details from "../Pages/Details/Details";
 import Subscription from "../Pages/Subscription/Subscription";
 import Payment from "../Pages/Payment/Payment";
 import PremiumArticles from "../Pages/PremiumArticles/PremiumArticles";
+import MyArticles from "../Pages/MyArticles/MyArticles";
 
 const Router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const Router = createBrowserRouter([
       {
         path: "premiumArticles",
         element: <PremiumArticles></PremiumArticles>,
+      },
+      {
+        path: "myArticles",
+        element: <MyArticles></MyArticles>,
       },
     ],
   },
