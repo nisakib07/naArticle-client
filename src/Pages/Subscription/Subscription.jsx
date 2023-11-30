@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import SectionTitle from "../../components/Shared/SectionTitle/SectionTitle";
 
 const Subscription = () => {
   const { setPrice, price, setDuration } = useContext(AuthContext);
@@ -33,47 +34,66 @@ const Subscription = () => {
 
   return (
     <div className="mt-10 mx-5">
-      <form onSubmit={handleSubmit}>
-        <select
-          onChange={handleSelectDuration}
-          value={selectedDuration}
-          required
-          className="select select-bordered w-full">
-          <option disabled value="default">
-            Select Duration
-          </option>
-          <option value="1">1 Minute</option>
-          <option value="5">5 Days</option>
-          <option value="10">10 Days</option>
-        </select>
-
-        <div className="form-control">
+      <div>
+        <img
+          className="w-full rounded-xl max-h-[500px]"
+          src="https://i.ibb.co/bzQBBjQ/subscribe.jpg"
+          alt=""
+        />
+      </div>
+      <SectionTitle heading="Buy Subscription"></SectionTitle>
+      <div className="bg-blue-300 px-7 py-10 mb-10">
+        <form onSubmit={handleSubmit}>
           <label className="label">
-            <span className="label-text text-xl font-semibold">Cost</span>
+            <span className="label-text text-xl font-semibold">Duration</span>
           </label>
-          <input
-            type="text"
-            placeholder="Type Here"
-            className="input input-bordered"
-            value={price}
-            readOnly
+          <select
+            onChange={handleSelectDuration}
+            value={selectedDuration}
             required
-            name="cost"
-          />
-        </div>
+            className="select select-bordered w-full">
+            <option disabled value="default">
+              Select Duration
+            </option>
+            <option value="1">1 Minute</option>
+            <option value="5">5 Days</option>
+            <option value="10">10 Days</option>
+          </select>
 
-        {selectedDuration === "default" ? (
-          <button type="submit" className="btn" disabled>
-            Buy
-          </button>
-        ) : (
-          <Link to="/payment">
-            <button type="submit" className="btn">
-              Buy
-            </button>
-          </Link>
-        )}
-      </form>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text text-xl font-semibold">Cost</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Type Here"
+              className="input input-bordered"
+              value={price}
+              readOnly
+              required
+              name="cost"
+            />
+          </div>
+
+          {selectedDuration === "default" ? (
+            <div className="flex justify-center mt-4">
+              <button type="submit" className="btn px-7" disabled>
+                Buy
+              </button>
+            </div>
+          ) : (
+            <Link to="/payment">
+              <div className="flex justify-center mt-4">
+                <button
+                  type="submit"
+                  className="btn bg-green-400 px-7 hover:bg-green-500 border-none">
+                  Buy
+                </button>
+              </div>
+            </Link>
+          )}
+        </form>
+      </div>
     </div>
   );
 };
