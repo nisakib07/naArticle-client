@@ -8,9 +8,9 @@ const useAllUsers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch("http://localhost:5000/users", { credentials: "include" }).then(
-        (res) => res.json()
-      ),
+      fetch("https://assignmentb8-12-server.vercel.app/users", {
+        credentials: "include",
+      }).then((res) => res.json()),
   });
 
   return { users, refetch, isLoading };

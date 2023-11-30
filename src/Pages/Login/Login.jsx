@@ -39,7 +39,7 @@ const Login = () => {
           expireTime: 0,
           buyingDate: 0,
         };
-        axios.post("http://localhost:5000/users", userInfo);
+        axios.post("https://assignmentb8-12-server.vercel.app/users", userInfo);
         navigate(from, { replace: true });
         toast.success("Logged In Successfully");
       })

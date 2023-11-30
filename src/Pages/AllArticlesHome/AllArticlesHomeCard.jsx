@@ -11,7 +11,9 @@ const AllArticlesHomeCard = ({ article, refetch }) => {
 
   const handleView = async () => {
     await axios
-      .patch(`http://localhost:5000/articles/increase-view/${_id}`)
+      .patch(
+        `https://assignmentb8-12-server.vercel.app/articles/increase-view/${_id}`
+      )
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           refetch();

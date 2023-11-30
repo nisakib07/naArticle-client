@@ -28,7 +28,7 @@ const MyArticles = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/articles/${id}`, {
+          .delete(`https://assignmentb8-12-server.vercel.app/articles/${id}`, {
             withCredentials: true,
           })
           .then((res) => {

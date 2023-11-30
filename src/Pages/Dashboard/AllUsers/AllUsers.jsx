@@ -21,9 +21,7 @@ const AllUsers = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .patch(`http://localhost:5000/users/admin/${id}`, {
-            withCredentials: true,
-          })
+          .patch(`https://assignmentb8-12-server.vercel.app/users/admin/${id}`)
           .then((res) => {
             if (res.data.modifiedCount > 0) {
               refetch();

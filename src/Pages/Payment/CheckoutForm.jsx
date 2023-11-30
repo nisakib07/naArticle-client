@@ -21,7 +21,9 @@ const CheckoutForm = () => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/create-payment-intent", { price: price })
+      .post("https://assignmentb8-12-server.vercel.app/create-payment-intent", {
+        price: price,
+      })
       .then((res) => {
         setClientSecret(res.data.clientSecret);
       });
@@ -74,7 +76,7 @@ const CheckoutForm = () => {
         };
         axios
           .put(
-            `http://localhost:5000/users/email?email=${user?.email}`,
+            `https://assignmentb8-12-server.vercel.app/users/email?email=${user?.email}`,
             updatedUser,
             { withCredentials: true }
           )

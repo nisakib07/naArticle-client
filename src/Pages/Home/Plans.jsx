@@ -7,7 +7,9 @@ const Plans = () => {
   const { data: plans = [], isLoading } = useQuery({
     queryKey: ["plans"],
     queryFn: () =>
-      fetch("http://localhost:5000/plans").then((res) => res.json()),
+      fetch("https://assignmentb8-12-server.vercel.app/plans").then((res) =>
+        res.json()
+      ),
   });
 
   if (isLoading) {

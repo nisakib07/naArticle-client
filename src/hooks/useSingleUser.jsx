@@ -12,9 +12,9 @@ const useSingleUser = () => {
     queryKey: ["singleUser"],
     enabled: !!user?.email,
     queryFn: () =>
-      fetch(`http://localhost:5000/users/${user?.email}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://assignmentb8-12-server.vercel.app/users/${user?.email}`
+      ).then((res) => res.json()),
   });
 
   return { currentUser, refetch, isLoading };

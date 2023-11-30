@@ -66,7 +66,7 @@ const AddArticle = () => {
         details: data.details,
       };
       axios
-        .post("http://localhost:5000/articles", article, {
+        .post("https://assignmentb8-12-server.vercel.app/articles", article, {
           withCredentials: true,
         })
         .then((res) => {

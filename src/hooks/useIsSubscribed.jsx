@@ -7,7 +7,7 @@
 //   const [isSubscribed, setIsSubscribed] = useState(true);
 //   if (isExpired) {
 //     axios
-//       .patch(`http://localhost:5000/users/${currentUser?.email}`)
+//       .patch(`https://assignmentb8-12-server.vercel.app/users/${currentUser?.email}`)
 //       .then((res) => {
 //         if (res.data.modifiedCount > 0) {
 //           setIsSubscribed(false);

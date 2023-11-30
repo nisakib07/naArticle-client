@@ -32,12 +32,14 @@ const ArticleCard = ({ article, refetch }) => {
       confirmButtonText: "Yes!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.patch(`http://localhost:5000/articles/${_id}`).then((res) => {
-          if (res.data.modifiedCount > 0) {
-            refetch();
-            toast.success("Article Approved");
-          }
-        });
+        axios
+          .patch(`https://assignmentb8-12-server.vercel.app/articles/${_id}`)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              toast.success("Article Approved");
+            }
+          });
       }
     });
   };
@@ -62,9 +64,13 @@ const ArticleCard = ({ article, refetch }) => {
     };
 
     axios
-      .put(`http://localhost:5000/articles/${_id}`, updatedArticle, {
-        withCredentials: true,
-      })
+      .put(
+        `https://assignmentb8-12-server.vercel.app/articles/${_id}`,
+        updatedArticle,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           toast.success("Article Declined with reason");
@@ -87,12 +93,14 @@ const ArticleCard = ({ article, refetch }) => {
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/articles/${_id}`).then((res) => {
-          if (res.data.deletedCount > 0) {
-            refetch();
-            toast.success("Article Deleted");
-          }
-        });
+        axios
+          .delete(`https://assignmentb8-12-server.vercel.app/articles/${_id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              toast.success("Article Deleted");
+            }
+          });
       }
     });
   };
@@ -109,7 +117,9 @@ const ArticleCard = ({ article, refetch }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .patch(`http://localhost:5000/articles/premium/${_id}`)
+          .patch(
+            `https://assignmentb8-12-server.vercel.app/articles/premium/${_id}`
+          )
           .then((res) => {
             if (res.data.modifiedCount > 0) {
               refetch();

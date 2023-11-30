@@ -9,7 +9,7 @@ const Details = () => {
   const { data: singleArticle, isLoading } = useQuery({
     queryKey: ["singleArticle"],
     queryFn: () =>
-      fetch(`http://localhost:5000/articles/${id}`, {
+      fetch(`https://assignmentb8-12-server.vercel.app/articles/${id}`, {
         credentials: "include",
       }).then((res) => res.json()),
   });

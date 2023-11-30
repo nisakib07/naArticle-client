@@ -12,7 +12,7 @@ const AddPublisher = () => {
     };
 
     axios
-      .post("http://localhost:5000/publishers", publisher, {
+      .post("https://assignmentb8-12-server.vercel.app/publishers", publisher, {
         withCredentials: true,
       })
       .then((res) => {

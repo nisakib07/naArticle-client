@@ -53,9 +53,12 @@ const AllArticlesHome = () => {
     const publisher = data.publisher;
 
     axios
-      .get(`http://localhost:5000/articles/searchPublisher/${publisher}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://assignmentb8-12-server.vercel.app/articles/searchPublisher/${publisher}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         setSearchedArticles(res.data);
         reset();
@@ -65,9 +68,12 @@ const AllArticlesHome = () => {
     const title = data.title;
 
     axios
-      .get(`http://localhost:5000/articles/searchTitle/${title}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://assignmentb8-12-server.vercel.app/articles/searchTitle/${title}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         setSearchedArticles(res.data);
         reset();
@@ -83,7 +89,7 @@ const AllArticlesHome = () => {
 
     axios
       .get(
-        `http://localhost:5000/articles/searchTags/tags`,
+        `https://assignmentb8-12-server.vercel.app/articles/searchTags/tags`,
 
         {
           params: {

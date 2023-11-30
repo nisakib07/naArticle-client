@@ -4,14 +4,17 @@ import axios from "axios";
 
 const useFilteredArticles = ({ status, search, tags, publisher }) => {
   const fetchFilteredArticles = async () => {
-    const response = await axios.get("http://localhost:5000/articles", {
-      params: {
-        status,
-        search,
-        tags: tags.join(","),
-        publisher,
-      },
-    });
+    const response = await axios.get(
+      "https://assignmentb8-12-server.vercel.app/articles",
+      {
+        params: {
+          status,
+          search,
+          tags: tags.join(","),
+          publisher,
+        },
+      }
+    );
 
     return response.data;
   };

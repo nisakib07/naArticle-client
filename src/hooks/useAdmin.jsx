@@ -13,9 +13,12 @@ const useAdmin = () => {
     queryKey: ["isAdmin"],
     enabled: !!user?.email,
     queryFn: () =>
-      fetch(`http://localhost:5000/users/admin/${user?.email}`, {
-        credentials: "include",
-      }).then((res) => res.json()),
+      fetch(
+        `https://assignmentb8-12-server.vercel.app/users/admin/${user?.email}`,
+        {
+          credentials: "include",
+        }
+      ).then((res) => res.json()),
   });
 
   return { isAdmin, refetch, isAdminLoading };

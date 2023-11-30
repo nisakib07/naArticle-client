@@ -7,7 +7,9 @@ const PremiumArticleCard = ({ article }) => {
   const { title, image, publisher, details, _id, views } = article;
 
   const handleView = async () => {
-    await axios.patch(`http://localhost:5000/articles/increase-view/${_id}`);
+    await axios.patch(
+      `https://assignmentb8-12-server.vercel.app/articles/increase-view/${_id}`
+    );
   };
   return (
     <div>

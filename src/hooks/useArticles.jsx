@@ -8,7 +8,9 @@ const useArticles = () => {
   } = useQuery({
     queryKey: ["articles"],
     queryFn: () =>
-      fetch("http://localhost:5000/articles").then((res) => res.json()),
+      fetch("https://assignmentb8-12-server.vercel.app/articles").then((res) =>
+        res.json()
+      ),
   });
 
   return { articles, refetch, isLoading };

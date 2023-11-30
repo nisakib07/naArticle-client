@@ -8,9 +8,9 @@ const usePublishers = () => {
   } = useQuery({
     queryKey: ["publishers"],
     queryFn: () =>
-      fetch("http://localhost:5000/publishers", {
-        credentials: "include",
-      }).then((res) => res.json()),
+      fetch("https://assignmentb8-12-server.vercel.app/publishers").then(
+        (res) => res.json()
+      ),
   });
 
   return { publishers, refetch, isLoading };

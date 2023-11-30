@@ -26,7 +26,9 @@ const UpdateArticle = () => {
   } = useQuery({
     queryKey: ["singleArticle"],
     queryFn: () =>
-      fetch(`http://localhost:5000/articles/${id}`).then((res) => res.json()),
+      fetch(`https://assignmentb8-12-server.vercel.app/articles/${id}`).then(
+        (res) => res.json()
+      ),
   });
   if (isLoading)
     return (
@@ -94,7 +96,10 @@ const UpdateArticle = () => {
         details: data.details,
       };
       axios
-        .put(`http://localhost:5000/articles/${_id}`, article)
+        .put(
+          `https://assignmentb8-12-server.vercel.app/articles/${_id}`,
+          article
+        )
         .then((res) => {
           if (res.data.modifiedCount > 0) {
             toast.success("Article Updated Successfully");

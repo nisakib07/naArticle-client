@@ -32,13 +32,15 @@ const Register = () => {
             expireTime: 0,
             buyingDate: 0,
           };
-          axios.post("http://localhost:5000/users", userInfo).then((res) => {
-            if (res.data.insertedId) {
-              toast.success("User Created Successfully");
-              reset();
-              navigate("/");
-            }
-          });
+          axios
+            .post("https://assignmentb8-12-server.vercel.app/users", userInfo)
+            .then((res) => {
+              if (res.data.insertedId) {
+                toast.success("User Created Successfully");
+                reset();
+                navigate("/");
+              }
+            });
         });
       })
       .catch((error) => {
