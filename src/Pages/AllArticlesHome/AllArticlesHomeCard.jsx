@@ -2,9 +2,13 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { FaArrowRight, FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useSubscribed from "../../hooks/useSubscribed";
 
 const AllArticlesHomeCard = ({ article, refetch }) => {
   const { title, image, publisher, details, isPremium, _id, views } = article;
+  const { currentUser } = useSubscribed();
+  const isSubscribed = currentUser.isSubscribed;
+  console.log(isSubscribed);
 
   const handleView = async () => {
     await axios
@@ -40,7 +44,7 @@ const AllArticlesHomeCard = ({ article, refetch }) => {
           </p>
           <p className="text-lg h-[100px]">{details.slice(0, 200)}...</p>
           <div className="card-actions justify-end">
-            {isPremium ? (
+            {isPremium && !isSubscribed ? (
               <button className="btn btn-disabled mt-3">
                 See Details <FaArrowRight />
               </button>
