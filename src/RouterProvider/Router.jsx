@@ -19,6 +19,7 @@ import PremiumArticles from "../Pages/PremiumArticles/PremiumArticles";
 import MyArticles from "../Pages/MyArticles/MyArticles";
 import UpdateArticle from "../Pages/UpdateArticle/UpdateArticle";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = createBrowserRouter([
   {
@@ -40,11 +41,19 @@ const Router = createBrowserRouter([
       },
       {
         path: "myProfile",
-        element: <MyProfile></MyProfile>,
+        element: (
+          <PrivateRoute>
+            <MyProfile></MyProfile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "addArticle",
-        element: <AddArticle></AddArticle>,
+        element: (
+          <PrivateRoute>
+            <AddArticle></AddArticle>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "allArticles",
@@ -52,27 +61,51 @@ const Router = createBrowserRouter([
       },
       {
         path: "details/:id",
-        element: <Details></Details>,
+        element: (
+          <PrivateRoute>
+            <Details></Details>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "subscription",
-        element: <Subscription></Subscription>,
+        element: (
+          <PrivateRoute>
+            <Subscription></Subscription>
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment",
-        element: <Payment></Payment>,
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
       },
       {
         path: "premiumArticles",
-        element: <PremiumArticles></PremiumArticles>,
+        element: (
+          <PrivateRoute>
+            <PremiumArticles></PremiumArticles>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "myArticles",
-        element: <MyArticles></MyArticles>,
+        element: (
+          <PrivateRoute>
+            <MyArticles></MyArticles>
+          </PrivateRoute>
+        ),
       },
       {
         path: "updateArticle/:id",
-        element: <UpdateArticle></UpdateArticle>,
+        element: (
+          <PrivateRoute>
+            <UpdateArticle></UpdateArticle>
+          </PrivateRoute>
+        ),
       },
     ],
   },

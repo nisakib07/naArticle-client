@@ -12,28 +12,36 @@ const Navbar = () => {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-      <li>
-        <NavLink to="/addArticle">Add Article</NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink to="/addArticle">Add Article</NavLink>
+        </li>
+      )}
       <li>
         <NavLink to="/allArticles">All Articles</NavLink>
       </li>
-      <li>
-        <NavLink to="/subscription">Subscription</NavLink>
-      </li>
-      {isAdmin?.isAdmin && (
+
+      {user && (
+        <li>
+          <NavLink to="/subscription">Subscription</NavLink>
+        </li>
+      )}
+
+      {user && isAdmin?.isAdmin && (
         <li>
           <NavLink to="/dashboard/adminHome">Dashboard</NavLink>
         </li>
       )}
-      {subscriptionTaken && (
+      {user && subscriptionTaken && (
         <li>
           <NavLink to="/premiumArticles">Premium Articles</NavLink>
         </li>
       )}
-      <li>
-        <NavLink to="/myArticles">My Articles</NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink to="/myArticles">My Articles</NavLink>
+        </li>
+      )}
     </>
   );
 
