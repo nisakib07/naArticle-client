@@ -18,10 +18,15 @@ const AllArticlesHomeCard = ({ article, refetch }) => {
 
   return (
     <div>
-      <div className="card card-compact bg-base-100 shadow-xl">
+      <div className="card card-compact bg-base-100 shadow-xl relative">
         <figure>
           <img className="w-full h-[300px]" src={image} alt="Shoes" />
         </figure>
+        {isPremium && (
+          <div className="bg-fuchsia-600 rounded-xl px-2 text-white py-2 absolute top-2 right-2">
+            Premium
+          </div>
+        )}
         <div className="p-5">
           <div className="flex items-center justify-between h-[60px]">
             <h2 className="text-xl font-semibold">{title}</h2>
