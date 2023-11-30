@@ -1,12 +1,27 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import useAdmin from "../../../hooks/useAdmin";
+import useSingleUser from "../../../hooks/useSingleUser";
 
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
   const { isAdmin } = useAdmin();
-  let subscriptionTaken = true;
+
+  const { currentUser, isLoading } = useSingleUser();
+  const expireTime = currentUser?.expireTime;
+  const currentTime = new Date().getTime();
+  const isExpired = currentTime > expireTime;
+  const [isSubscribed, setIsSubscribed] = useState(true);
+
+  useEffect(() => {
+    if (isExpired) {
+      setIsSubscribed(false);
+    } else {
+      setIsSubscribed(true);
+    }
+  }, [isExpired]);
+
   const navLinks = (
     <>
       <li>
@@ -32,7 +47,7 @@ const Navbar = () => {
           <NavLink to="/dashboard/adminHome">Dashboard</NavLink>
         </li>
       )}
-      {user && subscriptionTaken && (
+      {user && isSubscribed && (
         <li>
           <NavLink to="/premiumArticles">Premium Articles</NavLink>
         </li>
@@ -72,7 +87,13 @@ const Navbar = () => {
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-              {navLinks}
+              {isLoading ? (
+                <>
+                  <p>Loading...</p>
+                </>
+              ) : (
+                navLinks
+              )}
             </ul>
           </div>
           <div className="flex items-center gap-3">
@@ -85,7 +106,16 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+          <ul className="menu menu-horizontal px-1">
+            {" "}
+            {isLoading ? (
+              <>
+                <p>Loading...</p>
+              </>
+            ) : (
+              navLinks
+            )}
+          </ul>
         </div>
         <div className="navbar-end">
           {user ? (

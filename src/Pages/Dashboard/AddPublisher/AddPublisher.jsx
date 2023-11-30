@@ -11,12 +11,16 @@ const AddPublisher = () => {
       logo: form.logo.value,
     };
 
-    axios.post("http://localhost:5000/publishers", publisher).then((res) => {
-      if (res.data.insertedId) {
-        toast.success("Publisher Added Successfully");
-        form.reset();
-      }
-    });
+    axios
+      .post("http://localhost:5000/publishers", publisher, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Publisher Added Successfully");
+          form.reset();
+        }
+      });
   };
 
   return (

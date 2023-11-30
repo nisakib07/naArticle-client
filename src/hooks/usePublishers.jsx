@@ -8,7 +8,9 @@ const usePublishers = () => {
   } = useQuery({
     queryKey: ["publishers"],
     queryFn: () =>
-      fetch("http://localhost:5000/publishers").then((res) => res.json()),
+      fetch("http://localhost:5000/publishers", {
+        credentials: "include",
+      }).then((res) => res.json()),
   });
 
   return { publishers, refetch, isLoading };

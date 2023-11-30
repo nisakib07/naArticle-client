@@ -13,9 +13,9 @@ const useAdmin = () => {
     queryKey: ["isAdmin"],
     enabled: !!user?.email,
     queryFn: () =>
-      fetch(`http://localhost:5000/users/admin/${user?.email}`).then((res) =>
-        res.json()
-      ),
+      fetch(`http://localhost:5000/users/admin/${user?.email}`, {
+        credentials: "include",
+      }).then((res) => res.json()),
   });
 
   return { isAdmin, refetch, isAdminLoading };

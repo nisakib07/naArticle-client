@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Banner from "../../components/Banner/Banner";
 import Publishers from "../../components/Publishers/Publishers";
-
 import Count from "./Count";
 import Location from "./Location";
 import Plans from "./Plans";
@@ -9,19 +8,14 @@ import { Typewriter } from "react-simple-typewriter";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
+  const modalRef = useRef();
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
+    const timer = setTimeout(() => {
       setShowModal(true);
-    }, 1000);
-    return () => {
-      clearTimeout(timeoutId);
-    };
+    }, 5000);
+    return () => clearTimeout(timer);
   }, []);
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
 
   return (
     <div>
@@ -51,18 +45,19 @@ const Home = () => {
       <Location></Location>
 
       {showModal && (
-        <dialog className="modal modal-bottom sm:modal-middle">
+        <dialog
+          id="my_modal_5"
+          ref={modalRef}
+          className="modal modal-bottom sm:modal-middle">
           <div className="modal-box">
             <h3 className="font-bold text-lg">Hello!</h3>
             <p className="py-4">
-              Press ESC key or click the button below to close
+              Press ESC key or wait for the modal to close automatically
             </p>
-            <div className="modal-action">
-              {/* Add a button to close the modal */}
-              <button className="btn" onClick={closeModal}>
-                Close
-              </button>
-            </div>
+            <button
+              onClick={() => (window.location.href = "/subscription-page")}>
+              Go to subscription page
+            </button>
           </div>
         </dialog>
       )}

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 
-const useSubscribed = () => {
+const useSingleUser = () => {
   const { user } = useContext(AuthContext);
   const {
     data: currentUser = {},
@@ -20,4 +20,4 @@ const useSubscribed = () => {
   return { currentUser, refetch, isLoading };
 };
 
-export default useSubscribed;
+export default useSingleUser;

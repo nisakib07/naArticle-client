@@ -65,13 +65,17 @@ const AddArticle = () => {
         publishedDate: data.publishedDate,
         details: data.details,
       };
-      axios.post("http://localhost:5000/articles", article).then((res) => {
-        if (res.data.insertedId) {
-          toast.success("Article Added Successfully");
-          reset();
-          setValue("tags", null);
-        }
-      });
+      axios
+        .post("http://localhost:5000/articles", article, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          if (res.data.insertedId) {
+            toast.success("Article Added Successfully");
+            reset();
+            setValue("tags", null);
+          }
+        });
     }
   };
 

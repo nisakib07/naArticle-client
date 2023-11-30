@@ -3,7 +3,6 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = () => {
   const [error, setError] = useState("");
@@ -11,7 +10,15 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const { price, user, duration } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const buyingDate = new Date();
+  console.log("buying", buyingDate.getTime());
+  let expireTime = 0;
+  if (duration === 1) {
+    expireTime = buyingDate.getTime() + 1 * 60 * 1000;
+  } else {
+    expireTime = buyingDate.getTime() + duration * 24 * 60 * 60 * 1000;
+  }
+  console.log(expireTime);
 
   useEffect(() => {
     axios
@@ -62,21 +69,20 @@ const CheckoutForm = () => {
     } else {
       console.log("Payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
-        const buyingDate = new Date();
         const updatedUser = {
           isSubscribed: true,
-          buyingDate: buyingDate,
-          duration: duration,
+          buyingDate: buyingDate.getTime(),
+          expireTime: expireTime,
         };
         axios
           .put(
             `http://localhost:5000/users/email?email=${user?.email}`,
-            updatedUser
+            updatedUser,
+            { withCredentials: true }
           )
           .then((res) => {
             if (res.data.modifiedCount > 0) {
-              toast.success("Subscription Purchased Successfully");
-              navigate("/");
+              toast.success("Subscription Purchased Successfully! Go to Home");
             }
           });
       }

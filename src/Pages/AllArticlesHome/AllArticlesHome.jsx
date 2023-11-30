@@ -53,7 +53,9 @@ const AllArticlesHome = () => {
     const publisher = data.publisher;
 
     axios
-      .get(`http://localhost:5000/articles/searchPublisher/${publisher}`)
+      .get(`http://localhost:5000/articles/searchPublisher/${publisher}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setSearchedArticles(res.data);
         reset();
@@ -63,7 +65,9 @@ const AllArticlesHome = () => {
     const title = data.title;
 
     axios
-      .get(`http://localhost:5000/articles/searchTitle/${title}`)
+      .get(`http://localhost:5000/articles/searchTitle/${title}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setSearchedArticles(res.data);
         reset();
@@ -77,13 +81,17 @@ const AllArticlesHome = () => {
   const onSubmit = () => {
     const tags = selectedTags.map((option) => option.value);
 
-    console.log(tags);
     axios
-      .get(`http://localhost:5000/articles/searchTags/tags`, {
-        params: {
-          tags: tags,
-        },
-      })
+      .get(
+        `http://localhost:5000/articles/searchTags/tags`,
+
+        {
+          params: {
+            tags: tags,
+          },
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         setSearchedArticles(res.data);
       });

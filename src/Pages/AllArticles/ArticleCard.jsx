@@ -62,7 +62,9 @@ const ArticleCard = ({ article, refetch }) => {
     };
 
     axios
-      .put(`http://localhost:5000/articles/${_id}`, updatedArticle)
+      .put(`http://localhost:5000/articles/${_id}`, updatedArticle, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           toast.success("Article Declined with reason");

@@ -9,7 +9,9 @@ const Details = () => {
   const { data: singleArticle, isLoading } = useQuery({
     queryKey: ["singleArticle"],
     queryFn: () =>
-      fetch(`http://localhost:5000/articles/${id}`).then((res) => res.json()),
+      fetch(`http://localhost:5000/articles/${id}`, {
+        credentials: "include",
+      }).then((res) => res.json()),
   });
 
   if (isLoading)

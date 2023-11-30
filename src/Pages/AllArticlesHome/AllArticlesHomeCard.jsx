@@ -2,13 +2,12 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { FaArrowRight, FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import useSubscribed from "../../hooks/useSubscribed";
+import useSingleUser from "../../hooks/useSingleUser";
 
 const AllArticlesHomeCard = ({ article, refetch }) => {
   const { title, image, publisher, details, isPremium, _id, views } = article;
-  const { currentUser } = useSubscribed();
+  const { currentUser } = useSingleUser();
   const isSubscribed = currentUser.isSubscribed;
-  console.log(isSubscribed);
 
   const handleView = async () => {
     await axios

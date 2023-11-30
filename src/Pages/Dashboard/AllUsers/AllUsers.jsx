@@ -20,12 +20,16 @@ const AllUsers = () => {
       confirmButtonText: "Yes!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.patch(`http://localhost:5000/users/admin/${id}`).then((res) => {
-          if (res.data.modifiedCount > 0) {
-            refetch();
-            toast.success("Admin Role Given");
-          }
-        });
+        axios
+          .patch(`http://localhost:5000/users/admin/${id}`, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              toast.success("Admin Role Given");
+            }
+          });
       }
     });
   };

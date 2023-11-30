@@ -8,7 +8,9 @@ const useAllUsers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch("http://localhost:5000/users").then((res) => res.json()),
+      fetch("http://localhost:5000/users", { credentials: "include" }).then(
+        (res) => res.json()
+      ),
   });
 
   return { users, refetch, isLoading };

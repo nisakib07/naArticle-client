@@ -27,12 +27,16 @@ const MyArticles = () => {
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/articles/${id}`).then((res) => {
-          if (res.data.deletedCount > 0) {
-            refetch();
-            toast.success("Article Deleted");
-          }
-        });
+        axios
+          .delete(`http://localhost:5000/articles/${id}`, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              toast.success("Article Deleted");
+            }
+          });
       }
     });
   };
@@ -59,7 +63,7 @@ const MyArticles = () => {
               {/* row 1 */}
               {myArticles &&
                 myArticles.map((article, idx) => (
-                  <tr key={user._id}>
+                  <tr key={article._id}>
                     <td>{idx + 1}</td>
                     <td>{article.title}</td>
                     <td>
