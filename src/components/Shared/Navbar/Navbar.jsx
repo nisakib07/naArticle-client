@@ -67,7 +67,14 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <h1>SaArticle</h1>
+          <div className="flex items-center gap-3">
+            <img
+              className="w-[40px]"
+              src="https://i.ibb.co/CwB4F4d/logo.png"
+              alt=""
+            />
+            <h1 className="text-4xl font-bold">NaArticle</h1>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
