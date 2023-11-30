@@ -39,16 +39,14 @@ const Banner = () => {
         {sortedArticles &&
           sortedArticles.slice(0, 6).map((article) => (
             <SwiperSlide key={article._id}>
-              <div className="shadow-xl flex rounded-xl bg-blue-300 p-4">
+              <div className="shadow-xl flex flex-col md:flex-row rounded-xl bg-blue-300 p-4">
                 <img
                   className="h-[600px] w-[600px]"
                   src={article.image}
                   alt="Shoes"
                 />
-
                 <div className="card-body">
                   <h1 className="text-5xl font-semibold">{article.title}</h1>
-
                   <p className="text-2xl mt-7">
                     {article.details.slice(0, 300)}
                   </p>

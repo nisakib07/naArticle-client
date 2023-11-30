@@ -18,11 +18,13 @@ import Payment from "../Pages/Payment/Payment";
 import PremiumArticles from "../Pages/PremiumArticles/PremiumArticles";
 import MyArticles from "../Pages/MyArticles/MyArticles";
 import UpdateArticle from "../Pages/UpdateArticle/UpdateArticle";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
