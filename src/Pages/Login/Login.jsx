@@ -36,7 +36,7 @@ const Login = () => {
           email: res.user.email,
           image: res.user.photoURL,
           role: "user",
-          expireTime: 1,
+          expireTime: 0,
           buyingDate: 0,
         };
         axios.post("http://localhost:5000/users", userInfo);
