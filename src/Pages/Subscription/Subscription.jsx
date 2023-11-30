@@ -1,15 +1,17 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Subscription = () => {
+  const { setPrice, price, setDuration } = useContext(AuthContext);
   const [selectedDuration, setSelectedDuration] = useState("default");
-  const [cost, setCost] = useState("");
+  //   const [cost, setCost] = useState("");
+  //   console.log(duration);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Selected Duration:", selectedDuration);
-    console.log("Cost:", cost);
+
     axios.patch("");
   };
 
@@ -18,11 +20,14 @@ const Subscription = () => {
     setSelectedDuration(duration);
 
     if (duration === 1) {
-      setCost("10");
+      setPrice("10");
+      setDuration(1);
     } else if (duration === 5) {
-      setCost("100");
+      setPrice("100");
+      setDuration(5);
     } else if (duration === 10) {
-      setCost("150");
+      setPrice("150");
+      setDuration(10);
     }
   };
 
@@ -50,7 +55,7 @@ const Subscription = () => {
             type="text"
             placeholder="Type Here"
             className="input input-bordered"
-            defaultValue={cost}
+            value={price}
             readOnly
             required
             name="cost"
