@@ -29,6 +29,8 @@ const Register = () => {
             email: email,
             image: photoURL,
             role: "user",
+            expireTime: 1,
+            buyingDate: 0,
           };
           axios.post("http://localhost:5000/users", userInfo).then((res) => {
             if (res.data.insertedId) {

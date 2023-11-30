@@ -11,14 +11,13 @@ const CheckoutForm = () => {
   const elements = useElements();
   const { price, user, duration } = useContext(AuthContext);
   const buyingDate = new Date();
-  console.log("buying", buyingDate.getTime());
+
   let expireTime = 0;
   if (duration === 1) {
     expireTime = buyingDate.getTime() + 1 * 60 * 1000;
   } else {
     expireTime = buyingDate.getTime() + duration * 24 * 60 * 60 * 1000;
   }
-  console.log(expireTime);
 
   useEffect(() => {
     axios
@@ -70,7 +69,6 @@ const CheckoutForm = () => {
       console.log("Payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
         const updatedUser = {
-          isSubscribed: true,
           buyingDate: buyingDate.getTime(),
           expireTime: expireTime,
         };
