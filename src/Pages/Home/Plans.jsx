@@ -28,7 +28,7 @@ const Plans = () => {
   return (
     <div>
       <SectionTitle heading="Plans"></SectionTitle>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 px-3">
         {plans &&
           plans.map((plan) => <PlanCard key={plan._id} plan={plan}></PlanCard>)}
       </div>

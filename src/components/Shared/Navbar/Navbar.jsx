@@ -102,7 +102,7 @@ const Navbar = () => {
               src="https://i.ibb.co/CwB4F4d/logo.png"
               alt=""
             />
-            <h1 className="text-4xl font-bold">NaArticle</h1>
+            <h1 className="text-xl lg:text-4xl font-bold">NaArticle</h1>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">

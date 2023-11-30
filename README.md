@@ -1,8 +1,13 @@
-# React + Vite
+[NaArticle Live Site Link][https://tame-bat.surge.sh](https://tame-bat.surge.sh/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Features Of This Website
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- This is a News Portal Website
+- User can login both by google and registering via email and pass
+- By logging in, user can add articles, see all his articles and update articles
+- User can see his profile and update it
+- User can by subscription which enables him to read the premium news
+- There is an admin dashboard where admin can see different graphical statistics
+- Admin can see all users and make admin other user
+- Admin can see all articles and can approve, decline, delete and make the article premium
+- Admin can add publishers
