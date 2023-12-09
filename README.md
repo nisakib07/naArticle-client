@@ -1,4 +1,4 @@
-[NaArticle Live Site Link][https://tame-bat.surge.sh](https://tame-bat.surge.sh/)
+NaArticle Live Site Link- [https://tame-bat.surge.sh](https://tame-bat.surge.sh/)
 
 # Features Of This Website
 
@@ -11,3 +11,9 @@
 - Admin can see all users and make admin other user
 - Admin can see all articles and can approve, decline, delete and make the article premium
 - Admin can add publishers
+
+## Technologies Used
+
+<b>Front End</b> : HTML, CSS, Tailwind, React, JavaScript
+<br>
+<b>Back End</b> : Node.js, MongoDb
